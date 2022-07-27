@@ -1,7 +1,11 @@
-## One-Trimap Video Matting (ECCV 2022)
-### Hongje Seong, Seoung Wug Oh, Brian Price, Euntai Kim, Joon-Young Lee
+## One-Trimap Video Matting (ECCV 2022)<br> <sub>Hongje Seong, Seoung Wug Oh, Brian Price, Euntai Kim, Joon-Young Lee</sub>
 
 [[Paper]] [[Demo video]](https://youtu.be/qkda4fHSyQE)
+
+Official Pytorch implementation of the ECCV 2022 paper, "One-Trimap Video Matting".
+
+![Teaser image](./OTVM-teaser.jpg)
+
 
 ## Environments
 - Ubuntu 18.04
