@@ -1,10 +1,7 @@
 ## One-Trimap Video Matting (ECCV 2022)
 ### Hongje Seong, Seoung Wug Oh, Brian Price, Euntai Kim, Joon-Young Lee
 
-This is the implementation of OTVM (ECCV 2022).  
-This code is based on TCVOM (ACM MM 2021): [[link](https://github.com/yunkezhang/TCVOM)]  
-To see the demo video, please click the below image.  
-[![One-Trimap Video Matting (ECCV 2022)](https://img.youtube.com/vi/qkda4fHSyQE/0.jpg)](https://youtu.be/qkda4fHSyQE "One-Trimap Video Matting (ECCV 2022)")
+[[Paper]] [[Demo video]](https://youtu.be/qkda4fHSyQE)
 
 ## Environments
 - Ubuntu 18.04
@@ -105,3 +102,7 @@ The source code is released under the Attribution-NonCommercial-ShareAlike (CC B
 (see [this](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) for details)
 
 [![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+## Acknowledgments
+This code is based on TCVOM (ACM MM 2021): [[link](https://github.com/yunkezhang/TCVOM)]  
+
