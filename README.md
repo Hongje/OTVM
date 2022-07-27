@@ -28,13 +28,22 @@ PATH/TO/DATASET
 │   ├── Adobe Deep Image Mattng Dataset License Agreement.pdf
 │   ├── README.txt
 │   ├── Test_set
+│   │   ├── Adobe-licensed images
+│   │   └── ...
 │   └── Training_set
+│   │   ├── Adobe-licensed images
+│   │   └── ...
 └── VideoMatting108
     ├── BG_done2
+    │   ├── airport
+    │   └── ...
     ├── FG_done
+    │   ├── animal_still
+    │   └── ...
     ├── flow_png_val
+    │   ├── animal_still
+    │   └── ...
     ├── frame_corr.json
-    ├── GT_tri_png
     ├── train_videos_subset.txt
     ├── train_videos.txt
     ├── val_videos_subset.txt
@@ -94,3 +103,5 @@ bash scripts/eval_s4.sh 0
 This software is for non-commercial use only.
 The source code is released under the Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) Licence
 (see [this](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) for details)
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
