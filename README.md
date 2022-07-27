@@ -104,4 +104,4 @@ This software is for non-commercial use only.
 The source code is released under the Attribution-NonCommercial-ShareAlike (CC BY-NC-SA) Licence
 (see [this](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode) for details)
 
-[![Creative Commons License](https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-nd/4.0/)
+[![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
