@@ -32,8 +32,8 @@ PATH/TO/DATASET
 │   │   ├── Adobe-licensed images
 │   │   └── ...
 │   └── Training_set
-│   │   ├── Adobe-licensed images
-│   │   └── ...
+│       ├── Adobe-licensed images
+│       └── ...
 └── VideoMatting108
     ├── BG_done2
     │   ├── airport
