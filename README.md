@@ -22,7 +22,7 @@ pip install opencv-contrib-python scikit-image scipy tqdm imgaug yacs albumentat
 ```
 
 ## Dataset
-To train OTVM, you need to prepare [DIM](https://sites.google.com/view/deepimagematting) and [VideoMatting108](https://github.com/yunkezhang/TCVOM) datasets
+To train OTVM, you need to prepare [AIM](https://sites.google.com/view/deepimagematting) and [VideoMatting108](https://github.com/yunkezhang/TCVOM) datasets
 ```
 PATH/TO/DATASET
 ├── Combined_Dataset
