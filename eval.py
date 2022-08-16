@@ -11,7 +11,7 @@ from torchvision.utils import save_image
 import tqdm
 
 from config import get_cfg_defaults
-from dataset import EvalDataset, VideoMatting108_Test
+from dataset import EvalDataset, VideoMatting108_Test, Demo_Test
 from helpers import *
 
 torch.set_grad_enabled(False)
@@ -24,11 +24,16 @@ def parse_args():
     parser.add_argument("--gpu", type=str, default='0')
     parser.add_argument('--trimap', default='medium', choices=['narrow', 'medium', 'wide'])
     parser.add_argument("--viz", action='store_true')
+    parser.add_argument("--demo", action='store_true')
 
     args = parser.parse_args()
 
     cfg = get_cfg_defaults()
     cfg.TRAIN.STAGE = 4
+
+    if args.demo:
+        cfg.SYSTEM.OUTDIR = './demo_results'
+        cfg.DATASET.PATH = './demo'
 
     return args, cfg
 
@@ -51,7 +56,10 @@ def main(cfg, args, GPU):
         random.seed(random_seed)
         torch.manual_seed(random_seed)
 
-    outdir_tail = os.path.join(args.trimap, MODEL)
+    if args.demo:
+        outdir_tail = MODEL
+    else:
+        outdir_tail = os.path.join(args.trimap, MODEL)
     alpha_outdir = os.path.join(output_dir, 'test', outdir_tail)
     viz_outdir_img = os.path.join(output_dir, 'viz', 'img', outdir_tail)
     viz_outdir_vid = os.path.join(output_dir, 'viz', 'vid', outdir_tail)
@@ -71,10 +79,14 @@ def main(cfg, args, GPU):
     model.load_state_dict(dct)
     model = nn.DataParallel(model.cuda())
 
-    valid_dataset = VideoMatting108_Test(
-        data_root=cfg.DATASET.PATH,
-        mode='val',
-    )
+
+    if args.demo:
+        valid_dataset = Demo_Test(data_root=cfg.DATASET.PATH)
+    else:
+        valid_dataset = VideoMatting108_Test(
+            data_root=cfg.DATASET.PATH,
+            mode='val',
+        )
     with torch.no_grad():
         eval(args, cfg, valid_dataset, model, alpha_outdir, viz_outdir_img, viz_outdir_vid, args.viz)
     

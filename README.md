@@ -83,10 +83,17 @@ bash scripts/train_s3.sh 0,1,2,3
 bash scripts/train_s4.sh 0,1,2,3
 ```
 
-## Inference
+## Inference (VideoMatting108 dataset)
 ```bash
 # options: scripts/eval_s4.sh [GPU]
 bash scripts/eval_s4.sh 0
+```
+
+## Inference (custom dataset)
+```bash
+# options: scripts/eval_s4_demo.sh [GPU]
+# The results will be generated in: ./demo_results
+bash scripts/eval_s4_demo.sh 0
 ```
 
 ## Bibtex

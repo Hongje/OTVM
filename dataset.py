@@ -843,9 +843,6 @@ class EvalDataset(torch.utils.data.Dataset):
         else:
             self.data_root_FG = self.data_root
             self.data_root_BG = self.data_root
-
-        if self.data_name == 'DVM2':
-            self.max_image_shape = (9999, 9999)
         
         self.eps = [0., 1.]
         
@@ -881,12 +878,19 @@ class EvalDataset(torch.utils.data.Dataset):
             tri_gt = 0
         else:
             _tri_gt = cv2.imread(os.path.join(self.data_root_FG, self.tri_gt[idx]), cv2.IMREAD_UNCHANGED)
-            _tri_gt = _tri_gt > 1
-            tri_gt = np.float32(np.zeros_like(_tri_gt))
-            tri_gt[..., 0][np.logical_not(_tri_gt[..., 1] + _tri_gt[..., 2])] = 1
-            tri_gt[..., 1][_tri_gt[..., 2]] = 1
-            tri_gt[..., 2][_tri_gt[..., 1]] = 1
-
+            if len(_tri_gt.shape) == 3:
+                _tri_gt = _tri_gt > 1
+                tri_gt = np.float32(np.zeros_like(_tri_gt))
+                tri_gt[..., 0][np.logical_not(_tri_gt[..., 1] + _tri_gt[..., 2])] = 1
+                tri_gt[..., 1][_tri_gt[..., 2]] = 1
+                tri_gt[..., 2][_tri_gt[..., 1]] = 1
+            elif len(_tri_gt.shape) == 2:
+                tri_gt = np.float32(np.zeros_like(_tri_gt))
+                tri_gt = np.stack([tri_gt]*3, axis=-1)
+                tri_gt[..., 0][_tri_gt == 0] = 1
+                tri_gt[..., 2][_tri_gt == _tri_gt.max()] = 1
+                _tri_gt[_tri_gt==_tri_gt.max()] = 0
+                tri_gt[..., 1][_tri_gt == _tri_gt.max()] = 1
 
         if self.BG is None:
             bg = fg
@@ -1011,3 +1015,58 @@ class VideoMatting108_Test():
 
         self.idx += 1
         return 'V108', self.data_root_V108, fg, bg, a, tri, seq_name
+
+class Demo_Test():
+    def __init__(self, data_root):
+        self.idx = 0
+        self.data_root = data_root
+        
+        self.FG, self.TRI, self.seq_name = self.parse_DemoVideo(self.data_root)
+        
+        self.FG_len = len(self.FG)
+        self.TRI_len = len(self.TRI)
+
+    def __len__(self):
+        return self.FG_len
+
+    def parse_DemoVideo(self, data_root):
+        FG = list()
+        TRI = list()
+        FG_FOLDER = 'frames'
+        TRI_FOLDER = 'trimap'
+        seq_name = list()
+        for v in sorted(os.listdir(data_root)):
+            FG_path_current = list()
+            TRI_path_current = list()
+            tri_path_exist = ''
+            for i, img_name in enumerate(sorted(os.listdir(os.path.join(data_root, v, FG_FOLDER)))):
+                FG_path_current.append(os.path.join(v, FG_FOLDER, img_name))
+
+                tri_name = os.path.splitext(img_name)[0] + '.png'
+                tri_path = os.path.join(v, TRI_FOLDER, tri_name)
+                if os.path.isfile(os.path.join(data_root, tri_path)):
+                    tri_path_exist = tri_path
+                TRI_path_current.append(tri_path_exist)
+            FG.append(FG_path_current)
+            TRI.append(TRI_path_current)
+            seq_name.append(v)
+        return FG, TRI, seq_name
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        idx = self.idx
+        if self.idx >= len(self):
+            raise StopIteration
+        
+        fg = self.FG[idx]
+        bg = None
+        a = None
+        tri = self.TRI[idx]
+        seq_name = self.seq_name[idx]
+
+        self.idx += 1
+        return 'demo', self.data_root, fg, bg, a, tri, seq_name
+
+
