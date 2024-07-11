@@ -54,8 +54,20 @@ PATH/TO/DATASET
 
 ## Training
 ### Download pre-trained weights
-Note: Initial weights of the trimap propagation and alpha prediction networks were taken from [STM](https://github.com/seoungwugoh/STM) and [FBA](https://github.com/MarcoForte/FBA_Matting), respectively.
+Download pre-trained weights from [here](https://drive.google.com/drive/folders/1La53_oYZjhmcd2pfPPlnibLBPE12mc6b) and then put all the weights into `weight/`.
+Download the pre-trained weights from [here](https://drive.google.com/drive/folders/1La53_oYZjhmcd2pfPPlnibLBPE12mc6b) and put them in the `weight/` directory.
 ```bash
+mkdir weights
+mv STM_weights.pth weights/
+mv FBA.pth weights/
+mv s1_OTVM_trimap.pth weights/
+mv s1_OTVM_alpha.pth weights/
+mv s2_OTVM_alpha.pth weights/
+mv s3_OTVM.pth weights/
+mv s4_OTVM.pth weights/
+```
+Note: Initial weights of the trimap propagation and alpha prediction networks were taken from [STM](https://github.com/seoungwugoh/STM) and [FBA](https://github.com/MarcoForte/FBA_Matting), respectively.
+<!-- ```bash
 mkdir weights
 wget -O weights/STM_weights.pth "https://www.dropbox.com/s/mtfxdr93xc3q55i/STM_weights.pth?dl=1"
 wget -O weights/FBA.pth "https://yonsei-my.sharepoint.com/:u:/g/personal/hjseong_o365_yonsei_ac_kr/EZjHx4oY0-RIkEanfwZTW4oBPov7q6KdfybGriHnm51feQ?download=1"
@@ -64,7 +76,7 @@ wget -O weights/s1_OTVM_alpha.pth "https://yonsei-my.sharepoint.com/:u:/g/person
 wget -O weights/s2_OTVM_alpha.pth "https://yonsei-my.sharepoint.com/:u:/g/personal/hjseong_o365_yonsei_ac_kr/EUJX1ZILpCFMldsd013eWlkB_erJC53FfOATUx7XWWtKxw?download=1"
 wget -O weights/s3_OTVM.pth "https://yonsei-my.sharepoint.com/:u:/g/personal/hjseong_o365_yonsei_ac_kr/EeTwD4A-ElNCvZjhlSALqoABrg239xmuym0z28UOKDHj5A?download=1"
 wget -O weights/s4_OTVM.pth "https://yonsei-my.sharepoint.com/:u:/g/personal/hjseong_o365_yonsei_ac_kr/EdJy_a2QfGpPhCBbXUf_Bg4Bd2DFGgYRZEr2ifaQy76qiw?download=1"
-```
+``` -->
 ### Change DATASET.PATH in config.py
 ```bash
 vim config.py
