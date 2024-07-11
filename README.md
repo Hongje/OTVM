@@ -54,7 +54,6 @@ PATH/TO/DATASET
 
 ## Training
 ### Download pre-trained weights
-Download pre-trained weights from [here](https://drive.google.com/drive/folders/1La53_oYZjhmcd2pfPPlnibLBPE12mc6b) and then put all the weights into `weight/`.
 Download the pre-trained weights from [here](https://drive.google.com/drive/folders/1La53_oYZjhmcd2pfPPlnibLBPE12mc6b) and put them in the `weight/` directory.
 ```bash
 mkdir weights
